@@ -10,6 +10,16 @@ class SketchPad {
     container.appendChild(this.canvas);
 
     this.ctx = this.canvas.getContext('2d');
+
+    /**
+     * The path of drawing in the mouse [X, Y] co-ordinates.
+     */
+    this.path = [];
+    /**
+     * Signifying when drawing commences.
+     */
+    this.isDrawing = false;
+
     this.#addEventListeners();
   }
 
@@ -32,8 +42,9 @@ class SketchPad {
       const mouse = [
         Math.round(evt.clientX - rect.left),
         Math.round(evt.clientY - rect.top),
-      ]
-      console.log(mouse);
+      ];
+      this.path = mouse;
+      this.isDrawing = true;
     };
   }
 }
