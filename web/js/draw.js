@@ -9,5 +9,7 @@ draw.path = (ctx, path, color = 'black') => {
   // the spread operator will satisfy the parameters
   ctx.moveTo(...path[0]);
   path.map( coord => ctx.lineTo(...coord) );
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.stroke();
 };
