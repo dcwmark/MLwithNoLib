@@ -58,7 +58,7 @@ class SketchPad {
      */
     return [
       Math.round(evt.clientX - rect.left),
-      Math.round(evt.clientY - rect.top),
+      Math.round(evt.clientY - rect.top)
     ];
   };
 
