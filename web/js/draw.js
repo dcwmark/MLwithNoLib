@@ -13,3 +13,7 @@ draw.path = (ctx, path, color = 'black') => {
   ctx.lineJoin = 'round';
   ctx.stroke();
 };
+
+draw.paths = (ctx, paths, color = 'black') => {
+  paths.map( path => draw.path(ctx, path, color) );
+};
