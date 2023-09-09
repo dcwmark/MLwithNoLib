@@ -14,7 +14,7 @@ class SketchPad {
     /**
      * The path of drawing in the mouse [X, Y] co-ordinates.
      */
-    this.paths = [];
+    this.path = [];
     /**
      * Signifying when drawing commences.
      */
@@ -26,13 +26,13 @@ class SketchPad {
   #addEventListeners() {
     this.canvas.onmousedown = (evt) => {
       const mouse = this.#getMouseLocation(evt);
-      this.paths.push(mouse);
+      this.path= [mouse];
       this.isDrawing = true;
     };
     this.canvas.onmousemove = (evt) => {
       if (this.isDrawing) {
         const mouse = this.#getMouseLocation(evt);
-        this.paths.push(mouse);
+        this.path.push(mouse);
         this.#redraw();
       }
     };
@@ -71,6 +71,6 @@ class SketchPad {
       this.canvas.width,
       this.canvas.height  // to this offset (nottom right)
     );
-    draw.path(this.ctx, this.paths);
+    draw.path(this.ctx, this.path);
   };
 }
