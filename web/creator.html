@@ -51,12 +51,15 @@
         }
         data.student = student.value;
         student.style.display = 'none';
+
         const sketchPadContainer =
           document.getElementById('sketchPadContainer');
         sketchPadContainer.style.visibility = 'visible';
         const label = labels[index];
+
         const instructions = document.getElementById('instructions');
         instructions.innerHTML = `Please draw a ${label}`;
+
         const advanceBtn = document.getElementById('advanceBtn');
         advanceBtn.innerHTML = 'NEXT';
         advanceBtn.onclick = next;
