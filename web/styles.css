@@ -3,6 +3,10 @@ body {
   background-color: #fff2cc;
   overscroll-behavior: none;
 }
+button {
+  cursor: pointer;
+  border: none;
+}
 #content {
   position: absolute;
   top: 50%;
