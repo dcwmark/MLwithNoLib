@@ -26,6 +26,7 @@ class SketchPad {
      * Signifying when drawing commences.
      */
     this.isDrawing = false;
+    this.#redraw();
 
     this.#addEventListeners();
   }
