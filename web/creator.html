@@ -16,6 +16,7 @@
         <input  id="student"
                 type="text"
                 placeholder="Type Your Name" />
+        <span id="instructions"></span>
         <button id="advanceBtn"
                 onclick="start()">
           START
@@ -28,12 +29,52 @@
     <script src="js/sketchPad.js"></script>
 
     <script>
+      let index = 0;
+      const labels = [
+        'car', 'fish', 'house', 'tree',
+        'bicycle', 'guitar', 'pencil', 'clock'
+      ];
+
       const data = {
         student: null,
         sesskon: new Date().getTime(),
         drawings: {},
-      }
+      };
+
       const sketchPad = new SketchPad(sketchPadContainer);
+
+      const start = () => {
+        const student = document.getElementById('student');
+        if (student.value === '') {
+          alert('Please type your name');
+          return;
+        }
+        data.student = student.value;
+        student.style.display = 'none';
+        const sketchPadContainer =
+          document.getElementById('sketchPadContainer');
+        sketchPadContainer.style.visibility = 'visible';
+        const label = labels[index];
+        const instructions = document.getElementById('instructions');
+        instructions.innerHTML = `Please draw a ${label}`;
+        const advanceBtn = document.getElementById('advanceBtn');
+        advanceBtn.innerHTML = 'NEXT';
+        advanceBtn.onclick = next;
+      };
+
+      const next = () => {
+        if (sketchPad.paths.length === 0) {
+          alert(`Draw something first!`);
+          return;
+        }
+        
+        const label = labels[index];
+        data.drawings[label] = sketchPad.paths;
+        sketchPad.reset();
+        const nextLabel = labels[++index];
+        instructions.innerHTML = `Please draw a ${nextLabel}`;
+
+      };
     </script>
   </body>
 </html>

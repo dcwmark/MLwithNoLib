@@ -18,6 +18,12 @@ class SketchPad {
 
     this.ctx = this.canvas.getContext('2d');
 
+    this.reset();
+
+    this.#addEventListeners();
+  }
+
+  reset = () => {
     /**
      * The path of drawing in the mouse [X, Y] co-ordinates.
      */
@@ -27,9 +33,7 @@ class SketchPad {
      */
     this.isDrawing = false;
     this.#redraw();
-
-    this.#addEventListeners();
-  }
+  };
 
   #addEventListeners() {
     this.canvas.onmousedown = (evt) => {
