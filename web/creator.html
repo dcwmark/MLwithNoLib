@@ -37,7 +37,7 @@
 
       const data = {
         student: null,
-        sesskon: new Date().getTime(),
+        session: new Date().getTime(),
         drawings: {},
       };
 
@@ -74,9 +74,36 @@
         const label = labels[index];
         data.drawings[label] = sketchPad.paths;
         sketchPad.reset();
-        const nextLabel = labels[++index];
-        instructions.innerHTML = `Please draw a ${nextLabel}`;
 
+        if (index < labels.length - 1) {
+          const nextLabel = labels[++index];
+          instructions.innerHTML = `Please draw a ${nextLabel}`;
+        } else {
+          sketchPadContainer.style.visibility = 'hidden';
+          instructions.innerHTML = 'Thank you!';
+          advanceBtn.innerHTML = 'SAVE';
+          advanceBtn.onclick = save;
+        }
+      };
+
+      const save = () => {
+        advanceBtn.style.display = 'none';
+        instructions.innerHTML = 'Place downloaded file and place it alongside with others.';
+
+        const anchor = document.createElement('a');
+        anchor.setAttribute(
+          'href',
+          'data:text/plain;charset=utf-8,'
+          + encodeURIComponent(JSON.stringify(data))
+        );
+
+        const fileName = `${data.session}.json`;
+        anchor.setAttribute('download', fileName);
+
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
       };
     </script>
   </body>
