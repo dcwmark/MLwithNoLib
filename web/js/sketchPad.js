@@ -49,7 +49,12 @@ class SketchPad {
         this.#redraw();
       }
     };
-    this.canvas.onmouseup = () => {
+    /**
+     * If the mouseup is triggered outside the canvas,
+     * this.canvas.mouseup would not be caught, hence,
+     * document.mouseup; instead.
+     */
+    document.onmouseup = () => {
       this.isDrawing = false;
     };
 
@@ -65,7 +70,7 @@ class SketchPad {
       this.canvas.onmousemove(loc);
     };
     this.canvas.ontouchend = () => {
-      this.canvas.onmouseup();
+      document.onmouseup();
     };
 
     /**
