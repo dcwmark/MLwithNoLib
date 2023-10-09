@@ -1,5 +1,9 @@
 // node/dataset_generator.js
-const draw = require('../common/draw');
+const draw = require('../common/draw.js');
+
+const { createCanvas } = require('canvas');
+const canvas = createCanvas(400, 400);
+const ctx = canvas.getContext('2d');
 
 const constants = {};
 
@@ -13,6 +17,19 @@ constants.SAMPLES = constants.DATASET_DIR+'/samples.json';
 /* Read the RAW File folder */
 const fs = require('fs');
 const fileNames = fs.readdirSync(constants.RAW_DIR);
+
+const generateImageFile = (outFile, paths) => {
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+  draw.paths(ctx, paths);
+
+  const buffer = canvas.toBuffer('image/png');
+  fs.writeFileSync(outFile, buffer);
+};
 
 const samples = [];
 let id = 1;
@@ -53,13 +70,6 @@ fileNames.forEach( (fn) => {
     id++;
   }  
 });
-
-const generateImageFile = (outFile, paths) => {
-  draw.paths(ctx, paths);
-
-  const buffer = canvas.toBuffer('image/png');
-  fs.writeFileSync(outFile, buffer);
-};
 
 /* Write the samples array to samples.json as summary */
 fs.writeFileSync(
