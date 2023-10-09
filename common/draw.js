@@ -18,15 +18,5 @@ draw.paths = (ctx, paths, color = 'black') => {
   paths.map( path => draw.path(ctx, path, color) );
 };
 
-/**
- * My node does not need the if statement as
- * stated in the course.
- * Omitting the if clause for now.
- * If getting:
- *     Uncaught ReferenceError:
- *     module is not defined
- *     at draw.js:32:1
- * later, uncomment the if statement.
- */
-// if (typeof module !== 'undefined')
-module.exports = draw;
+if (typeof module !== 'undefined')
+  module.exports = draw;
