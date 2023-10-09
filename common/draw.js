@@ -18,4 +18,4 @@ draw.paths = (ctx, paths, color = 'black') => {
   paths.map( path => draw.path(ctx, path, color) );
 };
 
-module.export = draw;
+module.exports = draw;
