@@ -1,13 +1,14 @@
 // node/dataset_generator.js
+const fs = require('fs');
+const { createCanvas } = require('canvas');
+
 const draw = require('../common/draw.js');
 const constants = require('../common/constants.js');
-
-const { createCanvas } = require('canvas');
+const utils = require('../common/utils.js');
 const canvas = createCanvas(400, 400);
 const ctx = canvas.getContext('2d');
 
 /* Read the RAW File folder */
-const fs = require('fs');
 const fileNames = fs.readdirSync(constants.RAW_DIR);
 
 const generateImageFile = (outFile, paths) => {
@@ -59,6 +60,11 @@ fileNames.forEach( (fn) => {
       paths
     );  
 
+    /*
+      In each file path there are 8 files,
+      hence, <code>fileNames.length * 8</code>
+    */
+    utils.printProgress(id, fileNames.length * 8)
     id++;
   }  
 });
