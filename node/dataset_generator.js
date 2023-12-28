@@ -43,7 +43,7 @@ fileNames.forEach( (fn) => {
       id,
       label,
       student_name: student,
-      student_cleid: session,
+      student_id: session,
     })
 
     /*

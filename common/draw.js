@@ -1,3 +1,5 @@
+// common/draw.js
+
 const draw = {};
 
 draw.path = (ctx, path, color = 'black') => {

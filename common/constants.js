@@ -1,3 +1,5 @@
+// common/constants.js
+
 const constants = {};
 
 constants.DATA_DIR = `../data`;
