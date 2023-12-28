@@ -8,6 +8,7 @@
   <body>
     <h1>Data Viewer</h1>
     <div id="chartContainer"></div>
+    <br /><br />
     <div id="container"></div>
     <script src="../common/js_objects/features.js"></script>
     <script src="../common/constants.js"></script>
@@ -31,22 +32,39 @@
         hAxis: { title: featureNames[0] },
         vAxis: { title: featureNames[0] },
         legend: { position: 'none' },
+        explorer: {
+          actions: ['dragToZoom', 'rightClickToReset'],
+          maxZoomIn: 0.01,
+        },
       };
 
       google.charts.load(
         'current',
-        { 'packages': ['corechart'] },
+        { 'packages': ['corechart', 'scatter',] },
       );
 
       google.charts.setOnLoadCallback(() => {
         const data = new google.visualization.DataTable();
         data.addColumn('number', featureNames[0]);
         data.addColumn('number', featureNames[1]);
-        data.addRows(samples.map(s => s.point));
+        data.addColumn({ 'type': 'string', 'role': 'style', });
+        data.addRows(samples.map(s => [
+          ...s.point,
+          utils.styles[s.label],
+        ]));
 
         const chart = new google.visualization.
           ScatterChart(chartContainer);
         chart.draw(data, options);
+
+        /*
+        const chart = new google.charts.
+          Scatter(chartContainer);
+        chart.draw(
+          data,
+          google.charts.Scatter.convertOptions(options),
+        );
+        */
       });
     </script>
   </body>
