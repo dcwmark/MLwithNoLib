@@ -82,7 +82,7 @@ fs.writeFileSync(
  * Create the same data as above except wrapping the data
  * with <code>const samples = </code> and <code>;</code>
  * 
- * This step is chosen instead of creatting an API
+ * This step is chosen instead of creating an API
  * for the task is to:
  * 
  * 1. Avoid CORS

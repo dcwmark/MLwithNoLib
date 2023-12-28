@@ -28,7 +28,32 @@ for (const sample of samples) {
 const featureNames = ['Path Counts', 'Point Count'];
 fs.writeFileSync(
   constants.FEATURES,
-  JSON.stringify({ featureNames, samples }),
+  JSON.stringify({ 
+    featureNames,
+    samples: samples.map( (s) => {
+      return {
+        point: s.point,
+        label: s.label,
+      };
+    }),
+  }),
+);
+
+/** 
+ * Create similiar data as above with the "whole" of samples;
+ * except wrapping the data
+ * with <code>const samples = </code> and <code>;</code>
+ * 
+ * This step is chosen instead of creating an API
+ * for the task is to:
+ * 
+ * 1. Avoid CORS
+ * 2. Web Server
+ * 3. Live Server
+ */
+fs.writeFileSync(
+  constants.FEATURES_JS,
+  `const features=${ JSON.stringify({ featureNames, samples,}) };`,
 );
 
 console.log(`Done!`);
