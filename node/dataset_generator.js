@@ -5,6 +5,7 @@ const { createCanvas } = require('canvas');
 const draw = require('../common/draw.js');
 const constants = require('../common/constants.js');
 const utils = require('../common/utils.js');
+
 const canvas = createCanvas(400, 400);
 const ctx = canvas.getContext('2d');
 
@@ -69,8 +70,26 @@ fileNames.forEach( (fn) => {
   }  
 });
 
-/* Write the samples array to samples.json as summary */
+/** 
+ * Write the samples array to samples.json as summary
+ */
 fs.writeFileSync(
   constants.SAMPLES,
   JSON.stringify(samples)
+);
+
+/** 
+ * Create the same data as above except wrapping the data
+ * with <code>const samples = </code> and <code>;</code>
+ * 
+ * This step is chosen instead of creatting an API
+ * for the task is to:
+ * 
+ * 1. Avoid CORS
+ * 2. Web Server
+ * 3. Live Server
+ */
+fs.writeFileSync(
+  constants.SAMPLES_JS,
+    `const samples=${JSON.stringify(samples)};`
 );
