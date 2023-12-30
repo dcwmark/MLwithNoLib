@@ -1,5 +1,7 @@
 // web/js/display.js
 
+const EMPHASIZE = 'emphasize';
+
 function createRow(container, studentName, samples) {
   const row = document.createElement('div');
   row.classList.add('row');
@@ -15,6 +17,8 @@ function createRow(container, studentName, samples) {
 
     const sampleContainer = document.createElement('div');
     sampleContainer.id = `sample_${id}`;
+    sampleContainer.onclick =
+      () => handleClick(sample, false);
     sampleContainer.classList.add('sampleContainer');
 
     const sampleLabel = document.createElement('div');
@@ -34,3 +38,30 @@ function createRow(container, studentName, samples) {
   }
 }
 
+const deEmphasizeAll = () =>
+  [...document.querySelectorAll(`.${ EMPHASIZE }`)].
+    forEach((e) => e.classList.remove(EMPHASIZE));
+
+function handleClick(sample, doScroll = true) {
+  if (sample == null) {
+    deEmphasizeAll();
+    return;
+  }
+  const el = document.getElementById(
+    `sample_${sample.id}`
+  );
+  if (el.classList.contains(EMPHASIZE)) {
+    el.classList.remove(EMPHASIZE);
+    chart.selectSample(null);
+    return;
+  }
+  deEmphasizeAll();
+  el.classList.add(EMPHASIZE);
+  if (doScroll) {
+    el.scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+    });
+  }
+  chart.selectSample(sample);
+}
