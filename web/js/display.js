@@ -65,3 +65,15 @@ const handleClick = (sample, doScroll = true) => {
   }
   chart.selectSample(sample);
 }
+
+const DISPLAY_NONE = 'none';
+const DISPLAY_BLOCK = 'block';
+const toggleInput = () => {
+  if (inputContainer.style.display === DISPLAY_NONE) {
+    inputContainer.style.display = DISPLAY_BLOCK;
+    sketchPad.triggerUpdate();
+  } else {
+    inputContainer.style.display = DISPLAY_NONE;
+    chart.hideDynamicPoint();
+  }
+}

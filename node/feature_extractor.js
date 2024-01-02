@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 const constants = require('../common/constants');
-const features = require('../common/features');
+const featureFunctions = require('../common/featureFunctions');
 
 console.log(`Extracting Features ...`);
 
@@ -20,8 +20,8 @@ for (const sample of samples) {
   );
 
   sample.point = [
-    features.getPathCount(paths),
-    features.getPointCount(paths)
+    featureFunctions.getPathCount(paths),
+    featureFunctions.getPointCount(paths)
   ];
 }
 

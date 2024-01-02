@@ -3,10 +3,10 @@
 const draw = {};
 
 draw.path = (ctx, path, color = 'black') => {
-  ctx.stokeStyle = color;
+  ctx.strokeStyle = color;
   ctx.lineWidth = 3;
   ctx.beginPath();
-  // ctx moveTo taks two parameters
+  // ctx moveTo takes two parameters
   // each path occurance has X Y coirdinates
   // the spread operator will satisfy the parameters
   ctx.moveTo(...path[0]);
