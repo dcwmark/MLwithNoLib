@@ -4,13 +4,13 @@ const fs = require('fs');
 
 const constants = require('../common/constants');
 const featureFunctions = require('../common/featureFunctions');
+const utils = require('../common/utils');
 
 console.log(`Extracting Features ...`);
 
 const samples = JSON.parse(
     fs.readFileSync(constants.SAMPLES)
 );
-
 
 for (const sample of samples) {
   const paths = JSON.parse(
@@ -30,6 +30,10 @@ for (const sample of samples) {
   const functions = featureFunctions.inUse.map(f => f.function);
   sample.point = functions.map(f => f(paths));
 }
+
+utils.normalizePoints(
+  samples.map(s => s.point)
+);
 
 /**
  * const featureNames = ['Path Counts', 'Point Count'];

@@ -222,11 +222,14 @@ class Chart{
     const maxX=Math.max(...x);
     const minY=Math.min(...y);
     const maxY=Math.max(...y);
+    const deltaX = maxX - minX;
+    const deltaY = maxY - minY;
+    const maxDelta = Math.max(deltaX, deltaY);
     const bounds={
-        left:minX,
-        right:maxX,
-        top:maxY,
-        bottom:minY
+        left: minX,
+        right: minX + maxDelta,
+        top: maxY + maxDelta,
+        bottom: minY
     };
     return bounds;
   }
