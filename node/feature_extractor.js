@@ -34,7 +34,6 @@ for (const sample of samples) {
 /**
  * const featureNames = ['Path Counts', 'Point Count'];
  * 
- * 
  * With featureFunction.inUse[], replace each seperate calls
  * to mapping each of the name ref and repeat calling each,
  */
