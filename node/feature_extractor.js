@@ -31,7 +31,15 @@ for (const sample of samples) {
   sample.point = functions.map(f => f(paths));
 }
 
-const featureNames = ['Path Counts', 'Point Count'];
+/**
+ * const featureNames = ['Path Counts', 'Point Count'];
+ * 
+ * 
+ * With featureFunction.inUse[], replace each seperate calls
+ * to mapping each of the name ref and repeat calling each,
+ */
+const featureNames = featureFunctions.inUse.map(f => f.name);
+
 fs.writeFileSync(
   constants.FEATURES,
   JSON.stringify({ 
