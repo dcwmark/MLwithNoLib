@@ -18,11 +18,17 @@ for (const sample of samples) {
       `${constants.JSON_DIR}/${sample.id}.json`
     )
   );
-
-  sample.point = [
-    featureFunctions.getPathCount(paths),
-    featureFunctions.getPointCount(paths)
-  ];
+  /**
+   * sample.point = [
+   *   featureFunctions.getPathCount(paths),
+   *   featureFunctions.getPointCount(paths)
+   * ];
+   * 
+   * With featureFunction.inUse[], replace each seperate calls
+   * to mapping each of the function call and repeat calling each,
+   */
+  const functions = featureFunctions.inUse.map(f => f.function);
+  sample.point = functions.map(f => f(paths));
 }
 
 const featureNames = ['Path Counts', 'Point Count'];
