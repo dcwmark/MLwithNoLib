@@ -2,7 +2,7 @@
 
 const EMPHASIZE = 'emphasize';
 
-function createRow(container, studentName, samples) {
+const createRow = (container, studentName, samples) => {
   const row = document.createElement('div');
   row.classList.add('row');
   container.appendChild(row);
@@ -42,7 +42,7 @@ const deEmphasizeAll = () =>
   [...document.querySelectorAll(`.${ EMPHASIZE }`)].
     forEach((e) => e.classList.remove(EMPHASIZE));
 
-function handleClick(sample, doScroll = true) {
+const handleClick = (sample, doScroll = true) => {
   if (sample == null) {
     deEmphasizeAll();
     return;
