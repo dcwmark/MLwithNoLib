@@ -1,25 +1,26 @@
 // common/featureFunctions.js
 
-const featureFunctions = {};
+const featureFunctions = {
 
-featureFunctions.getPathCount = (paths) => paths.length;
+  getPathCount: (paths) => paths.length,
 
-featureFunctions.getPointCount  =(paths) => paths.flat().length;
+  getPointCount: (paths) => paths.flat().length,
 
-featureFunctions.getWidth = (paths) => {
-  const points = paths.flat();
-  const x = points.map(p => p[0]);
-  const min = Math.min(...x);
-  const max = Math.max(...x);
-  return max - min;
-};
+  getWidth: (paths) => {
+    const points = paths.flat();
+    const x = points.map(p => p[0]);
+    const min = Math.min(...x);
+    const max = Math.max(...x);
+    return max - min;
+  },
 
-featureFunctions.getHeight = (paths) => {
-  const points = paths.flat();
-  const y = points.map(p => p[1]);
-  const min = Math.min(...y);
-  const max = Math.max(...y);
-  return max - min;
+  getHeight: (paths) => {
+    const points = paths.flat();
+    const y = points.map(p => p[1]);
+    const min = Math.min(...y);
+    const max = Math.max(...y);
+    return max - min;
+  },
 };
 
 featureFunctions.inUse = [{
