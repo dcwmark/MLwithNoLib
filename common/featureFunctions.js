@@ -25,12 +25,13 @@ const featureFunctions = {
 
 /**
  * Chain of responsibility ???
+ * ===========================
+  featureFunctions.inUse = [{
+    name: 'Path Count', function: featureFunctions.getPathCount,
+  }, {
+    name: 'Point Count', function: featureFunctions.getPointCount,
+  }];
  */
-// featureFunctions.inUse = [{
-//   name: 'Path Count', function: featureFunctions.getPathCount,
-// }, {
-//   name: 'Point Count', function: featureFunctions.getPointCount,
-// }];
 featureFunctions.inUse = [{
   name: 'Width', function: featureFunctions.getWidth,
 }, {

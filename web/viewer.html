@@ -62,8 +62,8 @@
       const classify = (point) => {
         const samplePoints = samples.map(s => s.point);
         const indices = utils.getNearest(point, samplePoints);
-        const nearestSamples = samples[indices];
-        return { label: nearestSamples.label, nearestSamples };
+        const nearestSample = samples[indices];
+        return { label: nearestSample.label, nearestSample };
       };
 
       const onDrawingUpdate = (paths) => {
@@ -79,10 +79,10 @@
         const functions = featureFunctions.inUse.map(f => f.function);
         const point = functions.map(f => f(paths));
         utils.normalizePoints([point], minMax);
-        const { label, nearestSamples } = classify(point);
+        const { label, nearestSample } = classify(point);
         predictedLabelContainer.innerHTML =
           `Is it a ${label}?`;
-        chart.showDynamicPoint(point, label, nearestSamples);
+        chart.showDynamicPoint(point, label, nearestSample);
       };
 
       const sketchPad =
