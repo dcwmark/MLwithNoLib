@@ -19,6 +19,7 @@
     <br /><br />
     <div id="container"></div>
     <script src="../common/js_objects/features.js"></script>
+    <script src="../common/js_objects/minMax.js"></script>
 
     <script src="../common/constants.js"></script>
     <script src="../common/draw.js"></script>
@@ -69,6 +70,7 @@
         /**
          * Replacing this with featureFunctions.inUse[]:
          *    Chain of resposibility ???
+         * =============================================
             const point = [
               featureFunctions.getPathCount(paths),
               featureFunctions.getPointCount(paths)
@@ -76,6 +78,7 @@
         */
         const functions = featureFunctions.inUse.map(f => f.function);
         const point = functions.map(f => f(paths));
+        utils.normalizePoints([point], minMax);
         const { label, nearestSample } = classify(point);
         predictedLabelContainer.innerHTML =
           `Is it a ${label}?`;
