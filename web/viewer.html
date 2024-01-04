@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Data Viewerr</title>
+    <title>Data Viewer</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -61,9 +61,9 @@
 
       const classify = (point) => {
         const samplePoints = samples.map(s => s.point);
-        const index = utils.getNearest(point, samplePoints);
-        const nearestSample = samples[index];
-        return { label: nearestSample.label, nearestSample };
+        const indices = utils.getNearest(point, samplePoints);
+        const nearestSamples = samples[indices];
+        return { label: nearestSamples.label, nearestSamples };
       };
 
       const onDrawingUpdate = (paths) => {
@@ -79,10 +79,10 @@
         const functions = featureFunctions.inUse.map(f => f.function);
         const point = functions.map(f => f(paths));
         utils.normalizePoints([point], minMax);
-        const { label, nearestSample } = classify(point);
+        const { label, nearestSamples } = classify(point);
         predictedLabelContainer.innerHTML =
           `Is it a ${label}?`;
-        chart.showDynamicPoint(point, label, nearestSample);
+        chart.showDynamicPoint(point, label, nearestSamples);
       };
 
       const sketchPad =

@@ -1,7 +1,7 @@
 // web/js/sketchPad.js
 
 class SketchPad {
-  constructor(container, onUpdate = null, size=400) {
+  constructor(container, onUpdate = null, size = 400) {
     this.canvas = document.createElement("canvas");
     this.canvas.width = size;
     this.canvas.height = size;
@@ -98,7 +98,7 @@ class SketchPad {
      *   thereby, getting the Y co-ordinate that is relative
      *   to the top part of the canvas.
      * As we do not need the high precision available from the above
-     * calculations, we would round off to the nearest integers.
+     *   calculations, we would round off to the nearest integers.
      */
     return [
       Math.round(evt.clientX - rect.left),
