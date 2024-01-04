@@ -23,6 +23,9 @@ const featureFunctions = {
   },
 };
 
+/**
+ * Chain of responsibility ???
+ */
 featureFunctions.inUse = [{
   name: 'Path Count', function: featureFunctions.getPathCount,
 }, {
