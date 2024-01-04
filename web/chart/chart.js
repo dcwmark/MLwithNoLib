@@ -227,8 +227,8 @@ class Chart{
     const maxDelta = Math.max(deltaX, deltaY);
     const bounds={
         left: minX,
-        right: minX + maxDelta,
-        top: maxY + maxDelta,
+        right: maxX, //minX + maxDelta,
+        top: maxY, //minY + maxDelta,
         bottom: minY
     };
     return bounds;
@@ -269,11 +269,11 @@ class Chart{
       );
       ctx.beginPath();
       ctx.moveTo(...pixelLoc);
-      ctx.lineTo(
+      ctx.lineTo(...math.remapPoint(
         this.dataBounds,
         this.pixelBounds,
         this.nearestSample.point
-      );
+      ));
       ctx.stroke();
       graphics.drawImage(
         ctx,

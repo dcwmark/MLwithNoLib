@@ -63,6 +63,10 @@ utils.getNearest = (loc, points) => {
   return nearestIndex;
 };
 
+utils.invLerp = (a, b, v) => {
+  return (v - a) / (b - a);
+};
+
 utils.normalizePoints = (points) => {
   let min, max;
   const dimension = points[0].length;
@@ -75,15 +79,11 @@ utils.normalizePoints = (points) => {
     }
   }
   for (let i = 0; i < points.length; i++) {
-    for (let j =0; j < dimension; j++) {
+    for (let j = 0; j < dimension; j++) {
       points[i][j] =
         utils.invLerp(min[j], max[j], points[i][j]);
     }
   }
-};
-
-utils.invLerp = (a, b, v) => {
-  return (v - a) / (b - a);
 };
 
 if (typeof module !== 'undefined')
